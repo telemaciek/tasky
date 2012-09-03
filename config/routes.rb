@@ -1,5 +1,9 @@
 Tasky::Application.routes.draw do
 
+  resources :tasks
+
+  get "user/show"
+
   devise_for :users
 
 
