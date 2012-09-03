@@ -1,34 +1,11 @@
 Tasky::Application.routes.draw do
 
- devise_scope :user do
-  get "/" => "devise/sessions#new"
-end
 
-
-  authenticated :user do
-  root :to => 'users#index'
-  end
-  # root :to => "devise/sessions#new" 
+  root :to => "users#index" 
 
   devise_for :users
 
   resources :users, :only => [:show, :index]
-
-# devise_scope :user do
-#   get "/", :to => "devise/sessions#new"
-# end
-
-
-
-
-
-
-
-
-
-
-  # root :to => 'devise/sessions#new'
-
 
   # get "home/index"
   # The priority is based upon order of creation:
