@@ -2,7 +2,12 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
+    # @tasks = Task.all
+
+    # zakładając że wszyscy muszą się logować do aplikacji,
+    # możemy ustalić że taski to są jedynie taski danego usera
+    # (trzeba będzie zmienić jeśli będziemy chcieli oglądać taki innych)
+    @tasks = current_user.tasks
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,6 +46,13 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(params[:task])
+
+    @task.user = current_user
+
+    # mogli byśmy zapisać powyższą linijkę tak:
+    # @task.user_id = current_user.id
+    # ale nie robimy tego, ponieważ znaczy ona to sami
+    # a przemek mówi że jest brzydsza. biedna linijka.
 
     respond_to do |format|
       if @task.save
