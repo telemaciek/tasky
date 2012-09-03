@@ -2,29 +2,11 @@ Tasky::Application.routes.draw do
 
   resources :tasks
 
-  get "user/show"
+  root :to => "tasks#index" 
 
   devise_for :users
 
-
-# root :to => "home#index"
-
-devise_scope :user do
-  get "/", :to => "devise/sessions#new"
-
-  get "/login" => "devise/sessions#new"
-  delete "/logout" => "devise/sessions#destroy"
-end
-
-match 'id' => 'tasks#index', :as => 'home'
-
-
-
-
-
-
-  # root :to => 'devise/sessions#new'
-
+  resources :users, :only => [:show, :index]
 
   # get "home/index"
   # The priority is based upon order of creation:
