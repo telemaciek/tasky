@@ -1,20 +1,18 @@
 Tasky::Application.routes.draw do
 
-  get "users/index"
-
-  get "users/show"
-
-  devise_for :users
-  
  devise_scope :user do
   get "/" => "devise/sessions#new"
 end
 
 
   authenticated :user do
-  root :to => 'home#index'
+  root :to => 'users#index'
   end
-  root :to => "devise/sessions#new" 
+  # root :to => "devise/sessions#new" 
+
+  devise_for :users
+
+  resources :users, :only => [:show, :index]
 
 # devise_scope :user do
 #   get "/", :to => "devise/sessions#new"
