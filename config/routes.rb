@@ -16,7 +16,7 @@ devise_scope :user do
   delete "/logout" => "devise/sessions#destroy"
 end
 
-match 'home' => 'home#index', :as => 'home'
+match 'id' => 'tasks#index', :as => 'home'
 
 
 
