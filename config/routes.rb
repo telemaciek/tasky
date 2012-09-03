@@ -3,15 +3,16 @@ Tasky::Application.routes.draw do
   devise_for :users
 
 
-root :to => "home#index"
+# root :to => "home#index"
 
-# devise_scope :user do
-#   get "/", :to => "devise/sessions#new"
-# end
+devise_scope :user do
+  get "/", :to => "devise/sessions#new"
 
+  get "/login" => "devise/sessions#new"
+  delete "/logout" => "devise/sessions#destroy"
+end
 
-
-
+match 'home' => 'home#index', :as => 'home'
 
 
 
