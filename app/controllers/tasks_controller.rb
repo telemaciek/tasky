@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    # @tasks = Task.all
+    @tasks = Task.all
 
     # zakładając że wszyscy muszą się logować do aplikacji,
     # możemy ustalić że taski to są jedynie taski danego usera
@@ -19,6 +19,15 @@ class TasksController < ApplicationController
   # GET /tasks/1.json
   def show
     @task = Task.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @task }
+    end
+  end
+
+  def show_all
+    @tasks = Task.all
 
     respond_to do |format|
       format.html # show.html.erb
