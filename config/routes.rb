@@ -9,6 +9,7 @@ Tasky::Application.routes.draw do
   resources :users, :only => [:show, :index]
 
   match 'show_all' => 'tasks#show_all'
+  
   # get "home/index"
   # The priority is based upon order of creation:
   # first created -> highest priority.

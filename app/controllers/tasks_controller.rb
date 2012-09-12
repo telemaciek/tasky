@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
+
+  before_filter :check_user, :except => [:index, :show, :show_all, :new, :create]
   def index
     # @tasks = Task.all
 
@@ -103,4 +105,20 @@ class TasksController < ApplicationController
       format.json { head :no_content }
     end
   end
+  private
+    def check_user
+      @tasks = Task.all
+      @task = Task.find(params[:id])
+      unless current_user.id == @task.user_id
+        redirect_to show_all_url, alert: 'You dont have permission to edit this task!'
+      else
+        view = params[:action]
+
+      # if current_user.id == @task.user_id
+      #   render "edit"
+      # else
+      #   render :status => 404  
+      end
+    end
 end
+
