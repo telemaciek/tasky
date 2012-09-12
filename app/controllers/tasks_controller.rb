@@ -4,7 +4,7 @@ class TasksController < ApplicationController
 
   before_filter :check_user, :except => [:index, :show, :show_all, :new, :create]
   def index
-    # @tasks = Task.all
+    @tasks = Task.all
 
     # zakładając że wszyscy muszą się logować do aplikacji,
     # możemy ustalić że taski to są jedynie taski danego usera
@@ -28,8 +28,6 @@ class TasksController < ApplicationController
     end
   end
 
-  # GET /tasks/1
-  # GET /tasks/1.json
   def show_all
     @tasks = Task.all
 
