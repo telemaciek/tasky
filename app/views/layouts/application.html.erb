@@ -19,15 +19,26 @@
 
 	<div class="four columns">
 			<%= link_to "Sign out", destroy_user_session_path, :method => :delete %> 
-		  <p class="notice"><%= notice %></p>
-			<p class="alert"><%= alert %></p>
+		  
+		  <% if flash[:notice] %>
+		  	<div class="alert-box">
+		  		<p class="notice"><%= notice %></p>
+	     	</div>
+		  <% end %>
+
+		  <% if flash[:alert] %>
+				<div class="alert-box alert">
+					<p class="alert"><%= alert %></p>
+				</div>
+			<% end %>
+
 	</div>	
 
 	</div>
 
 	<div class="row">
       <h4>Footer Placeholder</h4>
-
+<%= debug(flash)%>
 	</div>
 </body>
 </html>
